@@ -86,7 +86,7 @@ class App extends Component {
     cards.push(targetCard)
     this.setState({cards:cards})
     let ac =_.filter(this.state.allCards, card => {
-      return card.name != targetCard.name
+      return card.name !== targetCard.name
     })
     this.setState({allCards:ac})
   }
@@ -97,7 +97,12 @@ class App extends Component {
   }
   onSearch=(e)=>{
     console.log(e.target.value)
-  }
+    let ac =_.filter(this.state.allCards, card => {
+      return card.name.toUpperCase().indexOf(e.target.value.toUpperCase()) >= 0
+    })
+    this.setState({allCards:ac})
+
+}
   render() {
     return (
       <div className="App">
